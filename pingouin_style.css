@@ -1,0 +1,65 @@
+body {
+  background-color: rgb(70, 70, 70);
+}
+
+.gameContainer{
+  background-size: 100%;
+  margin: auto;
+  max-width: 900px;
+}
+
+.gameHead {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fontPigouin {
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+  font-family: Georgia, serif;
+}
+
+.gameStart {
+  background-color: rgb(20, 20, 70);
+  border: 5px groove rgb(20, 20, 70);
+  border-radius: 10px;
+  font-size: 20px;
+  line-height: 2.5;
+  padding: 0 20px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+  width: 200px;
+  margin: 20px 0 20px 0;
+}
+
+.gameStart:hover {
+  background-color: rgb(10, 10, 35);
+  border: 5px groove rgb(10, 10, 35);
+}
+
+.gameBody {
+  display: flex;
+}
+
+.gameMenu{
+  flex: 1;
+}
+
+.gameMaps{
+  display: block;
+  margin: auto;
+}
+
+.gamePlayerRecap {
+  margin-top: 20px;
+}
+
+.gamePlayerRecap th {
+  text-align: left;
+}
+
+.gamePlayerRecap td {
+  width: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
