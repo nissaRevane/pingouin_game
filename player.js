@@ -1,8 +1,8 @@
 class Player {
-  constructor(order, pingouinNumber) {
+  constructor(order, penguinNumber) {
     this.order = order;
-    this.pingouinNumber = pingouinNumber;
-    this.activePingouinNumber = 0;
+    this.penguinNumber = penguinNumber;
+    this.activePenguinNumber = 0;
   };
 
   name = () => {
@@ -25,11 +25,11 @@ class Player {
     playerName.style.color = this.color();
     playerName.innerHTML = this.name();
     playerLine.appendChild(playerName);
-    for (let i=0; i<this.pingouinNumber; i++) {
-      let pingouin = document.createElement('td');
-      pingouin.style.backgroundColor = this.color();
-      pingouin.innerHTML = i;
-      playerLine.appendChild(pingouin);
+    for (let i=0; i<this.penguinNumber; i++) {
+      let penguin = document.createElement('td');
+      penguin.style.backgroundColor = this.color();
+      penguin.innerHTML = i;
+      playerLine.appendChild(penguin);
     }
     return playerLine;
   }

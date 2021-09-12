@@ -19,7 +19,7 @@ class Floe {
     }
   };
 
-  addPingouin = (x, y, player) => {
+  addPenguin = (x, y, player) => {
     let mapCoordinates = this.selectValidCoordinates(x, y);
     if (mapCoordinates) {
       let row = mapCoordinates.row;

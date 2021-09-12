@@ -1,4 +1,4 @@
-class PingouinGame {
+class PenguinGame {
   constructor(canvas, floeItemSize, nbRow, nbColumn, players) {
     this.canvas = canvas;
     this.floe = new Floe(canvas, floeItemSize, nbRow, nbColumn);
@@ -16,20 +16,20 @@ class PingouinGame {
       let inputX = event.pageX - canvasPosition.left;
       let inputY = event.pageY - canvasPosition.top;
 
-      let playerActivePingouinNumber = this.activePlayer().activePingouinNumber;
-      let playerPingouinNumber = this.activePlayer().pingouinNumber;
+      let playerActivePenguinNumber = this.activePlayer().activePenguinNumber;
+      let playerPenguinNumber = this.activePlayer().penguinNumber;
 
-      if (playerActivePingouinNumber < playerPingouinNumber) {
-        this.tryToAddPingouin(inputX, inputY);
+      if (playerActivePenguinNumber < playerPenguinNumber) {
+        this.tryToAddPenguin(inputX, inputY);
       }
     });
   }
 
   // Private
 
-  tryToAddPingouin = (inputX, inputY) => {
-    if (this.floe.addPingouin(inputX, inputY, this.activePlayer())) {
-      this.addActivePingouinToPlayer();
+  tryToAddPenguin = (inputX, inputY) => {
+    if (this.floe.addPenguin(inputX, inputY, this.activePlayer())) {
+      this.addActivePenguinToPlayer();
       this.turn++;
       return true;
     }
@@ -40,7 +40,7 @@ class PingouinGame {
     return this.players[this.turn%this.players.length];
   }
 
-  addActivePingouinToPlayer = () => {
-    this.players[this.turn%this.players.length].activePingouinNumber++;
+  addActivePenguinToPlayer = () => {
+    this.players[this.turn%this.players.length].activePenguinNumber++;
   }
 };

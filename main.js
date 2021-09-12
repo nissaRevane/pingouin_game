@@ -1,37 +1,37 @@
-const canvas = document.getElementById('pingouinGameMaps');
-const pingouinGameStart = document.getElementById('pingouinGameStart');
+const canvas = document.getElementById('penguinGameMaps');
+const penguinGameStart = document.getElementById('penguinGameStart');
 const selectPlayers = document.getElementById('playerNumber');
 
 const floeItemSize = 40;
 const nbRow = 8, nbColumn = 15;
 
-function startPingouinGame() {
+function startPenguinGame() {
   let playerNumber = selectPlayers.options[selectPlayers.selectedIndex].value;
-  managePingouinGameStart();
+  managePenguinGameStart();
   players = createPlayers(playerNumber);
 
-  pingouinGame = new PingouinGame(
+  penguinGame = new PenguinGame(
     canvas, floeItemSize, nbRow, nbColumn, players
   );
-  pingouinGame.start();
+  penguinGame.start();
 }
 
-function managePingouinGameStart() {
-  if (pingouinGameStart.dataset.state == 'start') {
-    pingouinGameStart.innerHTML = 'NEW GAME';
-    pingouinGameStart.dataset.state = 'newGame';
+function managePenguinGameStart() {
+  if (penguinGameStart.dataset.state == 'start') {
+    penguinGameStart.innerHTML = 'NEW GAME';
+    penguinGameStart.dataset.state = 'newGame';
   }
 }
 
 function createPlayers(playerNumber) {
-  let pingouinPlayerRecap = document.getElementById('pingouinPlayerRecap');
-  pingouinPlayerRecap.innerHTML = '';
+  let penguinPlayerRecap = document.getElementById('penguinPlayerRecap');
+  penguinPlayerRecap.innerHTML = '';
   let players = [];
   for (let i=0; i<playerNumber; i++) {
-    let pingouinNumber = 6-playerNumber;
-    let player = new Player(i, pingouinNumber);
+    let penguinNumber = 6-playerNumber;
+    let player = new Player(i, penguinNumber);
     players.push(player);
-    pingouinPlayerRecap.appendChild(player.createPlayerMenu());
+    penguinPlayerRecap.appendChild(player.createPlayerMenu());
   }
   return players;
 }

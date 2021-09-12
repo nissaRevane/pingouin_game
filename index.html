@@ -2,18 +2,18 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <title>Pingouin game</title>
-      <link rel="stylesheet" media="screen" type="text/css" title="pingouinStyle" href="pingouin_style.css"/>
+      <title>Penguin game</title>
+      <link rel="stylesheet" media="screen" type="text/css" title="penguinStyle" href="penguin_style.css"/>
   </head>
   <body>
     <div class='gameContainer'>
       <div class='gameHead'>
-        <h1 class='gameTitle fontPigouin'>Pingouin Game</h1>
+        <h1 class='gameTitle fontPenguin'>Penguin Game</h1>
         <button
-          id='pingouinGameStart'
-          class='gameStart fontPigouin'
+          id='penguinGameStart'
+          class='gameStart fontPenguin'
           data-state='start'
-          onclick='startPingouinGame()'
+          onclick='startPenguinGame()'
           type='button'>
           START
         </button>
@@ -22,7 +22,7 @@
       <div class='gameBody'>
         <div class='gameMenu'>
           <form class='gameConfiguration'>
-            <label for='playerNumber' class='fontPigouin'>
+            <label for='playerNumber' class='fontPenguin'>
               Number of player :
             </label>
             <select name='playerNumber' id='playerNumber'>
@@ -31,14 +31,14 @@
                 <option value='4'>4</option>
             </select>
           </form>
-          <table class='gamePlayerRecap' id='pingouinPlayerRecap'></table>
+          <table class='gamePlayerRecap' id='penguinPlayerRecap'></table>
         </div>
 
-        <canvas id='pingouinGameMaps' class='gameMaps' width="640" height="584">
+        <canvas id='penguinGameMaps' class='gameMaps' width="640" height="584">
           <img id='fish1Image' src="images/fish1.png">
           <img id='fish2Image' src="images/fish2.png">
           <img id='fish3Image' src="images/fish3.png">
-          <img id='pingouinImage' src="images/pingouin.png">
+          <img id='penguinImage' src="images/penguin.png">
         </canvas>
       </div>
     </div>
@@ -47,6 +47,6 @@
   <script src="floe_item.js"></script>
   <script src="floe.js"></script>
   <script src="player.js"></script>
-  <script src="pingouin_game.js"></script>
+  <script src="penguin_game.js"></script>
   <script src="main.js"></script>
 </html>
