@@ -3,6 +3,7 @@ class Player {
     this.order = order;
     this.penguinNumber = penguinNumber;
     this.activePenguinNumber = 0;
+    this.score = 0;
   };
 
   name = () => {

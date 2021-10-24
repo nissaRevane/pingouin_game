@@ -1,7 +1,7 @@
 class PenguinGame {
-  constructor(canvas, floeItemSize, nbRow, nbColumn, players) {
+  constructor(canvas, floeTileSize, nbRow, nbColumn, players) {
     this.canvas = canvas;
-    this.floe = new Floe(canvas, floeItemSize, nbRow, nbColumn);
+    this.floe = new Floe(canvas, floeTileSize, nbRow, nbColumn);
     this.players = players;
     this.turn = 0;
   };

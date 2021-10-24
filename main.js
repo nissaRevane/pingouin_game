@@ -2,7 +2,7 @@ const canvas = document.getElementById('penguinGameMaps');
 const penguinGameStart = document.getElementById('penguinGameStart');
 const selectPlayers = document.getElementById('playerNumber');
 
-const floeItemSize = 40;
+const floeTileSize = 40;
 const nbRow = 8, nbColumn = 15;
 
 function startPenguinGame() {
@@ -11,7 +11,7 @@ function startPenguinGame() {
   players = createPlayers(playerNumber);
 
   penguinGame = new PenguinGame(
-    canvas, floeItemSize, nbRow, nbColumn, players
+    canvas, floeTileSize, nbRow, nbColumn, players
   );
   penguinGame.start();
 }

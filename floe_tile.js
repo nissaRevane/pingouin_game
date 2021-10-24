@@ -2,7 +2,7 @@ const pi = Math.PI
 const fishImages = ['fish1Image', 'fish2Image', 'fish3Image'];
 const pingouinImage = document.getElementById('penguinImage');
 
-class FloeItem {
+class FloeTile {
   constructor(ctx, x, y, size, fishNumber, player) {
     this.ctx = ctx;
     this.x = x;
