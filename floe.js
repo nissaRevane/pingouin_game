@@ -20,15 +20,26 @@ class Floe {
   };
 
   addPenguin = (x, y, player) => {
-    let mapCoordinates = this.selectValidCoordinates(x, y);
-    if (mapCoordinates) {
-      let row = mapCoordinates.row;
-      let column = mapCoordinates.column;
+    let coordinates = this.positionToCoordinates(x, y);
+    if(!coordinates) { return }
+
+    let row = coordinates.row;
+    let column = coordinates.column;
+
+    if (!this.floeMap[row][column].player) {
       this.floeMap[row][column].player = player;
       this.draw();
-      return true;
+      return coordinates;
     }
-    return false;
+  }
+
+  selectPenguin = (row, column, player) => {
+    if (this.coordinatesAreValid(row, column)) {
+      if (this.floeMap[row][column].player.order === player.order) {
+        this.floeMap[row][column].selected = true;
+        this.draw();
+      }
+    }
   }
 
   // Private
@@ -74,26 +85,34 @@ class Floe {
     return new FloeTile(this.ctx, x, y, this.floeTileSize, fishNumber, false);
   }
 
+  findFloeTileByPosition = (x, y) => {
+    let coordinates = this.positionToCoordinates(x, y);
+    if (coordinates) {
+      let row = coordinates.row;
+      let column = coordinates.column;
+      return this.floeMap[row][column];
+    }
+    return false;
+  }
+
   floeTileRemaining = () => {
     return this.distribution[0] + this.distribution[1] + this.distribution[2];
   }
 
-  selectValidCoordinates = (x, y) => {
+  positionToCoordinates = (x, y) => {
     const floorRow = Math.floor(((y/this.floeTileSize)-1)/1.8);
     const floorColumn = Math.floor((x/this.floeTileSize)-1);
 
     for (let row = floorRow; row <= floorRow+1; row++) {
       for (let column = floorColumn; column <= floorColumn+1; column++) {
         if (this.floeMap[row] && this.floeMap[row][column]) {
-          if(!this.floeMap[row][column].player){
-            const floeTile = this.floeMap[row][column];
-            const deltaX = floeTile.x-x;
-            const deltaY = floeTile.y-y;
-            const distance = Math.pow(deltaX, 2) + Math.pow(deltaY, 2);
+          const floeTile = this.floeMap[row][column];
+          const deltaX = floeTile.x-x;
+          const deltaY = floeTile.y-y;
+          const distance = Math.pow(deltaX, 2) + Math.pow(deltaY, 2);
 
-            if (distance < Math.pow(this.floeTileSize, 2)) {
-              return {row: row, column: column};
-            }
+          if (distance < Math.pow(this.floeTileSize, 2)) {
+            return {row: row, column: column};
           }
         }
       }

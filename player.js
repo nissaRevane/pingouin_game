@@ -2,7 +2,7 @@ class Player {
   constructor(order, penguinNumber) {
     this.order = order;
     this.penguinNumber = penguinNumber;
-    this.activePenguinNumber = 0;
+    this.activePenguins = [];
     this.score = 0;
   };
 
@@ -33,5 +33,16 @@ class Player {
       playerLine.appendChild(penguin);
     }
     return playerLine;
+  }
+
+  selectPenguinByCoordinates = (row, column) => {
+    let selected = null;
+    this.activePenguins.forEach(activePenguin => {
+      if (activePenguin.row === row && activePenguin.column === column) {
+        activePenguin.selected = true;
+        selected = activePenguin;
+      }
+    });
+    return selected;
   }
 };

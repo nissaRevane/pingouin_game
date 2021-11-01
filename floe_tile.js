@@ -3,13 +3,14 @@ const fishImages = ['fish1Image', 'fish2Image', 'fish3Image'];
 const pingouinImage = document.getElementById('penguinImage');
 
 class FloeTile {
-  constructor(ctx, x, y, size, fishNumber, player) {
+  constructor(ctx, x, y, size, fishNumber, player = null, selected = false) {
     this.ctx = ctx;
     this.x = x;
     this.y = y;
     this.size = size;
     this.fishNumber = fishNumber;
     this.player = player;
+    this.selected = selected;
   };
 
   draw = () => {
@@ -22,11 +23,11 @@ class FloeTile {
       );
     }
 
-    this.ctx.fillStyle = this.itemColor();
+    this.ctx.fillStyle = this.tileColor();
     this.ctx.fill();
 
     this.ctx.drawImage(
-      this.itemImage(),
+      this.tileImage(),
       this.x - this.size/2, this.y - this.size/2,
       this.size, this.size
     );
@@ -34,13 +35,18 @@ class FloeTile {
 
   // Private
 
-  itemImage = () => {
+  tileImage = () => {
     if (this.player) { return pingouinImage; }
     return document.getElementById(fishImages[this.fishNumber - 1]);
   }
 
-  itemColor = () => {
-    if (this.player) { return this.player.color(); }
+  tileColor = () => {
+    if (this.player) {
+      if (this.selected) {
+        return this.player.color().replaceAll('0', '5');
+      }
+      return this.player.color();
+    }
 
     let red = (150+20*this.fishNumber).toString();
     let green = (130+40*this.fishNumber).toString();
