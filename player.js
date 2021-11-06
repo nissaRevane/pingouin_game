@@ -35,14 +35,14 @@ class Player {
     return playerLine;
   }
 
-  selectPenguinByCoordinates = (row, column) => {
-    let selected = null;
+  findPenguinByCoordinates = (row, column) => {
+    let penguin = null;
     this.activePenguins.forEach(activePenguin => {
       if (activePenguin.row === row && activePenguin.column === column) {
         activePenguin.selected = true;
-        selected = activePenguin;
+        penguin = activePenguin;
       }
     });
-    return selected;
+    return penguin;
   }
 };

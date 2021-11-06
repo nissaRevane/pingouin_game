@@ -42,6 +42,14 @@ class Floe {
     }
   }
 
+  movePenguin = (penguin, endRow, endColumn) => {
+    this.floeMap[penguin.row][penguin.column] = null;
+    this.floeMap[endRow][endColumn].player = penguin.player;
+    penguin.row = endRow;
+    penguin.column = endColumn;
+    this.draw();
+  }
+
   // Private
 
   createFloeMap = () => {
