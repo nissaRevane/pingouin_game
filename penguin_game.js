@@ -78,7 +78,6 @@ class PenguinGame {
       this.floe.movePenguin(this.selectedPenguin, endRow, endColumn);
       this.selectedPenguin = null;
       this.turn ++;
-
     }
   }
 
@@ -93,10 +92,121 @@ class PenguinGame {
   }
 
   moveIsPossible = (endRow, endColumn) => {
-    let deltaRow = endRow - this.selectedPenguin.row;
-    let deltaColumn = endColumn - this.selectedPenguin.column;
-    if ([0, deltaColumn, -1 * deltaColumn].includes(deltaRow)) {
-      return true;
+    return  (
+      this.isMovingRight(endRow, endColumn) ||
+      this.isMovingLeft(endRow, endColumn) ||
+      this.isMovingUpRight(endRow, endColumn) ||
+      this.isMovingUpLeft(endRow, endColumn) ||
+      this.isMovingDownRight(endRow, endColumn) ||
+      this.isMovingDownLeft(endRow, endColumn)
+    );
+  }
+
+  isMovingRight = (endRow, endColumn) => {
+    let startRow = this.selectedPenguin.row;
+    let startColumn = this.selectedPenguin.column;
+
+    if (startRow === endRow && startColumn < endColumn) {
+      let moveIsPossible = true;
+
+      for(let i=startColumn+2; i<endColumn; i+=2) {
+        let floeTile = this.floe.floeMap[startRow][i];
+        if (!floeTile || floeTile.player) {
+          moveIsPossible = false;
+          break;
+        }
+      }
+      return moveIsPossible;
+    }
+    return false;
+  }
+  isMovingLeft = (endRow, endColumn) => {
+    let startRow = this.selectedPenguin.row;
+    let startColumn = this.selectedPenguin.column;
+
+    if (startRow === endRow && startColumn > endColumn) {
+      let moveIsPossible = true;
+
+      for(let i=endColumn+2; i<startColumn; i+=2) {
+        let floeTile = this.floe.floeMap[startRow][i];
+        if (!floeTile || floeTile.player) {
+          moveIsPossible = false;
+          break;
+        }
+      }
+      return moveIsPossible;
+    }
+    return false;
+  }
+  isMovingUpRight = (endRow, endColumn) => {
+    let startRow = this.selectedPenguin.row;
+    let startColumn = this.selectedPenguin.column;
+
+    if (endRow - startRow === startColumn - endColumn && endRow < startRow) {
+      let moveIsPossible = true;
+
+      for(let i=1; i<endColumn-startColumn; i++) {
+        let floeTile = this.floe.floeMap[startRow-i][startColumn+i];
+        if (!floeTile || floeTile.player) {
+          moveIsPossible = false;
+          break;
+        }
+      }
+      return moveIsPossible;
+    }
+    return false;
+  }
+  isMovingUpLeft = (endRow, endColumn) => {
+    let startRow = this.selectedPenguin.row;
+    let startColumn = this.selectedPenguin.column;
+
+    if (endRow - startRow === endColumn - startColumn && endRow < startRow) {
+      let moveIsPossible = true;
+
+      for(let i=1; i<startColumn-endColumn; i++) {
+        let floeTile = this.floe.floeMap[startRow-i][startColumn-i];
+        if (!floeTile || floeTile.player) {
+          moveIsPossible = false;
+          break;
+        }
+      }
+      return moveIsPossible;
+    }
+    return false;
+  }
+  isMovingDownRight = (endRow, endColumn) => {
+    let startRow = this.selectedPenguin.row;
+    let startColumn = this.selectedPenguin.column;
+
+    if (endRow - startRow === endColumn - startColumn && endRow > startRow) {
+      let moveIsPossible = true;
+
+      for(let i=1; i<endColumn-startColumn; i++) {
+        let floeTile = this.floe.floeMap[startRow+i][startColumn+i];
+        if (!floeTile || floeTile.player) {
+          moveIsPossible = false;
+          break;
+        }
+      }
+      return moveIsPossible;
+    }
+    return false;
+  }
+  isMovingDownLeft = (endRow, endColumn) => {
+    let startRow = this.selectedPenguin.row;
+    let startColumn = this.selectedPenguin.column;
+
+    if (endRow - startRow === startColumn - endColumn && endRow > startRow) {
+      let moveIsPossible = true;
+
+      for(let i=1; i<startColumn - endColumn; i++) {
+        let floeTile = this.floe.floeMap[startRow+i][startColumn+i];
+        if (!floeTile || floeTile.player) {
+          moveIsPossible = false;
+          break;
+        }
+      }
+      return moveIsPossible;
     }
     return false;
   }
