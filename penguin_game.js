@@ -27,6 +27,8 @@ class PenguinGame {
       } else if (this.selectedPenguin) {
         this.tryToMovePenguin(inputX, inputY);
       }
+
+      this.changeActivePlayerMenuShadow();
     });
   }
 
@@ -110,8 +112,7 @@ class PenguinGame {
       let moveIsPossible = true;
 
       for(let i=startColumn+2; i<endColumn; i+=2) {
-        let floeTile = this.floe.floeMap[startRow][i];
-        if (!floeTile || floeTile.player) {
+        if (this.floe.tileCannotBeCrossed(startRow, i)) {
           moveIsPossible = false;
           break;
         }
@@ -120,6 +121,7 @@ class PenguinGame {
     }
     return false;
   }
+
   isMovingLeft = (endRow, endColumn) => {
     let startRow = this.selectedPenguin.row;
     let startColumn = this.selectedPenguin.column;
@@ -128,8 +130,7 @@ class PenguinGame {
       let moveIsPossible = true;
 
       for(let i=endColumn+2; i<startColumn; i+=2) {
-        let floeTile = this.floe.floeMap[startRow][i];
-        if (!floeTile || floeTile.player) {
+        if (this.floe.tileCannotBeCrossed(startRow, i)) {
           moveIsPossible = false;
           break;
         }
@@ -138,6 +139,7 @@ class PenguinGame {
     }
     return false;
   }
+
   isMovingUpRight = (endRow, endColumn) => {
     let startRow = this.selectedPenguin.row;
     let startColumn = this.selectedPenguin.column;
@@ -146,8 +148,7 @@ class PenguinGame {
       let moveIsPossible = true;
 
       for(let i=1; i<endColumn-startColumn; i++) {
-        let floeTile = this.floe.floeMap[startRow-i][startColumn+i];
-        if (!floeTile || floeTile.player) {
+        if (this.floe.tileCannotBeCrossed(startRow-i, startColumn+i)) {
           moveIsPossible = false;
           break;
         }
@@ -156,6 +157,7 @@ class PenguinGame {
     }
     return false;
   }
+
   isMovingUpLeft = (endRow, endColumn) => {
     let startRow = this.selectedPenguin.row;
     let startColumn = this.selectedPenguin.column;
@@ -164,8 +166,7 @@ class PenguinGame {
       let moveIsPossible = true;
 
       for(let i=1; i<startColumn-endColumn; i++) {
-        let floeTile = this.floe.floeMap[startRow-i][startColumn-i];
-        if (!floeTile || floeTile.player) {
+        if (this.floe.tileCannotBeCrossed(startRow-i, startColumn-i)) {
           moveIsPossible = false;
           break;
         }
@@ -174,6 +175,7 @@ class PenguinGame {
     }
     return false;
   }
+
   isMovingDownRight = (endRow, endColumn) => {
     let startRow = this.selectedPenguin.row;
     let startColumn = this.selectedPenguin.column;
@@ -182,8 +184,7 @@ class PenguinGame {
       let moveIsPossible = true;
 
       for(let i=1; i<endColumn-startColumn; i++) {
-        let floeTile = this.floe.floeMap[startRow+i][startColumn+i];
-        if (!floeTile || floeTile.player) {
+        if (this.floe.tileCannotBeCrossed(startRow+i, startColumn+i)) {
           moveIsPossible = false;
           break;
         }
@@ -192,6 +193,7 @@ class PenguinGame {
     }
     return false;
   }
+
   isMovingDownLeft = (endRow, endColumn) => {
     let startRow = this.selectedPenguin.row;
     let startColumn = this.selectedPenguin.column;
@@ -200,8 +202,7 @@ class PenguinGame {
       let moveIsPossible = true;
 
       for(let i=1; i<startColumn - endColumn; i++) {
-        let floeTile = this.floe.floeMap[startRow+i][startColumn+i];
-        if (!floeTile || floeTile.player) {
+        if (this.floe.tileCannotBeCrossed(startRow+i, startColumn-i)) {
           moveIsPossible = false;
           break;
         }
@@ -209,5 +210,24 @@ class PenguinGame {
       return moveIsPossible;
     }
     return false;
+  }
+
+  changeActivePlayerMenuShadow = () => {
+    this.removeAllPlayerShadow();
+    let playerName = this.activePlayer().name;
+    let activePlayerNameMenu = document.getElementById(
+      `menuName${playerName.charAt(0).toUpperCase() + playerName.slice(1)}`
+    );
+    activePlayerNameMenu.style.textShadow = '0px 0px 8px #FFF';
+  }
+
+  removeAllPlayerShadow = () => {
+    this.players.forEach (player => {
+      let playerName = player.name;
+      let activePlayerNameMenu = document.getElementById(
+        `menuName${playerName.charAt(0).toUpperCase() + playerName.slice(1)}`
+      );
+      activePlayerNameMenu.style.textShadow = null;
+    });
   }
 };

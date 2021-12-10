@@ -50,6 +50,11 @@ class Floe {
     this.draw();
   }
 
+  tileCannotBeCrossed = (row, column) => {
+    let floeTile = this.floeMap[row][column];
+    return !floeTile || floeTile.player
+  }
+
   // Private
 
   createFloeMap = () => {
