@@ -1,3 +1,5 @@
+// just something to comnit
+
 const canvas = document.getElementById('penguinGameMaps');
 const penguinGameStart = document.getElementById('penguinGameStart');
 const selectPlayers = document.getElementById('playerNumber');
